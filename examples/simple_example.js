@@ -6,6 +6,8 @@ require('dotenv').config()
 // Broker config
 const options = {
     clientId: "mqttjs01",
+    username: "",
+    password: "",
     clean: true
 };
 
@@ -42,4 +44,5 @@ client.subscribe(topic_list,{qos:1});
 // Listener
 client.on('message',function(topic, message, packet){
 	console.log("message received "+ message + " at topic " + topic);
+	// console.log("topic  "+ topic);
 });
