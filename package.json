@@ -1,0 +1,23 @@
+{
+  "name": "mqtt_nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marutimuthu/mqtt_nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marutimuthu/mqtt_nodejs/issues"
+  },
+  "homepage": "https://github.com/marutimuthu/mqtt_nodejs#readme",
+  "dependencies": {
+    "mqtt": "^4.3.6"
+  }
+}
