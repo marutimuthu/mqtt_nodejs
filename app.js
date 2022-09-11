@@ -1,45 +1,34 @@
 // Reference: http://www.steves-internet-guide.com/using-node-mqtt-client/
-
 var mqtt = require('mqtt');
 require('dotenv').config()
 
+const device_id = "test_node_2"
+const post_interval = 5000
+var topic = `realtime`;
+
 // Broker config
 const options = {
-    clientId: "mqttjs01",
-    clean: true
+    clientId: device_id,
+    clean: true,
+    username: process.env.BROKER_USERNAME,
+    password: process.env.BROKER_PASSWORD
 };
-
+ 
 // Connect to broker
 var client = mqtt.connect(process.env.BROKER_URL, options)
 client.on("connect", function () {
-    console.log("connected  " + client.connected);
+    console.log("🚀 Broker connection status:  " + client.connected);
 })
 client.on("error", function (error) {
     console.log("Can't connect" + error);
     process.exit(1)
 });
 
-// Publish
-var message = "test message";
-var topic = "testtopic";
-//publish every 5 secs
-var timer_id = setInterval(function () {
-    publish(topic, message, options);
-}, 5000);
-
-//publish function
-function publish(topic, msg, options) {
-    console.log("publishing", msg);
-    if (client.connected == true) {
-        client.publish(topic, msg, options);
-    }
-}
-
 // Subscribe
-var topic_list=["testtopic","topic3","topic4"];
-client.subscribe(topic_list,{qos:1});
+var topic_list = ["data"];
+client.subscribe(topic_list, { qos: 1 });
 
 // Listener
-client.on('message',function(topic, message, packet){
-	console.log("message received "+ message + " at topic " + topic);
+client.on('message', function (topic, message, packet) {
+    console.log("-[ message received: " + message + " at topic " + topic);
 });
